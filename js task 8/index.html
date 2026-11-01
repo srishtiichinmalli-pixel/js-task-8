@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript API & DOM Manipulation Tasks</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f6;
+      color: #333;
+      padding: 20px;
+    }
+
+    h1.page-title {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2c3e50;
+    }
+
+    /* Status indicator container for Task 18, 19, 20 */
+    .api-status-box {
+      background: #fff;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      border-left: 5px solid #3498db;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .api {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #2980b9;
+    }
+
+    /* Grid Layout: Displays statements in a responsive row/column grid */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .task-card {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e2e8f0;
+    }
+
+    .task-number {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #e67e22;
+      margin-bottom: 6px;
+    }
+
+    .task-title {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #edf2f7;
+      padding-bottom: 8px;
+    }
+
+    .output-content {
+      flex-grow: 1;
+      overflow-y: auto;
+      max-height: 250px;
+    }
+
+    /* Output Styling Helper Classes */
+    .card {
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #f8fafc;
+    }
+
+    .card img, .fixed-width-img {
+      width: 200px;
+      height: auto;
+      display: block;
+      margin: 8px 0;
+      border-radius: 4px;
+    }
+
+    .img-only {
+      width: 100px;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .item-box {
+      background: #f1f5f9;
+      padding: 8px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-title">JavaScript & DOM Output Dashboard</h1>
+
+  <!-- Container for API status messages (Tasks 18, 19, 20) -->
+  <div class="api-status-box">
+    <strong>API Status:</strong> <span class="api"></span>
+  </div>
+
+  <!-- Cards Grid Container -->
+  <div class="grid-container">
+
+    <!-- Task 1 -->
+    <div class="task-card">
+      <div class="task-number">Task 1</div>
+      <div class="task-title">Display only product title in &lt;h1&gt;</div>
+      <div class="output-content" id="output-1"></div>
+    </div>
+
+    <!-- Task 2 -->
+    <div class="task-card">
+      <div class="task-number">Task 2</div>
+      <div class="task-title">Display product ID & title in &lt;h2&gt;</div>
+      <div class="output-content" id="output-2"></div>
+    </div>
+
+    <!-- Task 3 -->
+    <div class="task-card">
+      <div class="task-number">Task 3</div>
+      <div class="task-title">First 30 characters of product title</div>
+      <div class="output-content" id="output-3"></div>
+    </div>
+
+    <!-- Task 4 -->
+    <div class="task-card">
+      <div class="task-number">Task 4</div>
+      <div class="task-title">First 100 characters of description</div>
+      <div class="output-content" id="output-4"></div>
+    </div>
+
+    <!-- Task 5 -->
+    <div class="task-card">
+      <div class="task-number">Task 5</div>
+      <div class="task-title">Product image inside a &lt;div&gt;</div>
+      <div class="output-content" id="output-5"></div>
+    </div>
+
+    <!-- Task 6 -->
+    <div class="task-card">
+      <div class="task-number">Task 6</div>
+      <div class="task-title">Title, description & image in single &lt;div&gt;</div>
+      <div class="output-content" id="output-6"></div>
+    </div>
+
+    <!-- Task 7 -->
+    <div class="task-card">
+      <div class="task-number">Task 7</div>
+      <div class="task-title">Product price inside a &lt;p&gt; tag</div>
+      <div class="output-content" id="output-7"></div>
+    </div>
+
+    <!-- Task 8 -->
+    <div class="task-card">
+      <div class="task-number">Task 8</div>
+      <div class="task-title">Product category inside an &lt;h3&gt; tag</div>
+      <div class="output-content" id="output-8"></div>
+    </div>
+
+    <!-- Task 9 -->
+    <div class="task-card">
+      <div class="task-number">Task 9</div>
+      <div class="task-title">Product title in UPPERCASE</div>
+      <div class="output-content" id="output-9"></div>
+    </div>
+
+    <!-- Task 10 -->
+    <div class="task-card">
+      <div class="task-number">Task 10</div>
+      <div class="task-title">Title and total character count</div>
+      <div class="output-content" id="output-10"></div>
+    </div>
+
+    <!-- Task 11 -->
+    <div class="task-card">
+      <div class="task-number">Task 11</div>
+      <div class="task-title">Display first 5 products only</div>
+      <div class="output-content" id="output-11"></div>
+    </div>
+
+    <!-- Task 12 -->
+    <div class="task-card">
+      <div class="task-number">Task 12</div>
+      <div class="task-title">Display product ID, title & price</div>
+      <div class="output-content" id="output-12"></div>
+    </div>
+
+    <!-- Task 13 -->
+    <div class="task-card">
+      <div class="task-number">Task 13</div>
+      <div class="task-title">Product image with width of 200px</div>
+      <div class="output-content" id="output-13"></div>
+    </div>
+
+    <!-- Task 14 -->
+    <div class="task-card">
+      <div class="task-number">Task 14</div>
+      <div class="task-title">Separate &lt;div&gt; with class "card"</div>
+      <div class="output-content" id="output-14"></div>
+    </div>
+
+    <!-- Task 15 -->
+    <div class="task-card">
+      <div class="task-number">Task 15</div>
+      <div class="task-title">Title and description (limited to 50 chars)</div>
+      <div class="output-content" id="output-15"></div>
+    </div>
+
+    <!-- Task 16 -->
+    <div class="task-card">
+      <div class="task-number">Task 16</div>
+      <div class="task-title">Titles on Webpage & Console (Press F12)</div>
+      <div class="output-content" id="output-16"></div>
+    </div>
+
+    <!-- Task 17 -->
+    <div class="task-card">
+      <div class="task-number">Task 17</div>
+      <div class="task-title">Title and category inside same &lt;div&gt;</div>
+      <div class="output-content" id="output-17"></div>
+    </div>
+
+  </div>
+
+  <script src="scprit.js"></script>
+</body>
+</html>
